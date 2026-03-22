@@ -26,10 +26,10 @@ class DeckPlaybackService : MediaSessionService() {
     }
     private val binder = LocalBinder()
 
-    override fun onBind(intent: Intent?): IBinder {
+    override fun onBind(intent: Intent?): IBinder? {
         // Return our binder when the app binds (not the session binder)
         if (intent?.action == ACTION_BIND) return binder
-        return super.onBind(intent)!!
+        return super.onBind(intent)
     }
 
     override fun onCreate() {
@@ -53,7 +53,7 @@ class DeckPlaybackService : MediaSessionService() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        mediaSession = MediaSession.Builder(this, exoPlayer!!)
+        mediaSession = MediaSession.Builder(this, exoPlayer ?: return)
             .setSessionActivity(pendingIntent)
             .build()
     }

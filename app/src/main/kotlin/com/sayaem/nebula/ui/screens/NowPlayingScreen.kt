@@ -142,7 +142,7 @@ fun NowPlayingScreen(
                     if (state.currentSong?.albumArtUri != null) {
                         AsyncImage(
                             model = ImageRequest.Builder(LocalContext.current)
-                                .data(state.currentSong!!.albumArtUri).crossfade(true).build(),
+                                .data(state.currentSong?.albumArtUri).crossfade(true).build(),
                             contentDescription = null,
                             contentScale = androidx.compose.ui.layout.ContentScale.Crop,
                             modifier = Modifier.size(160.dp).clip(CircleShape)
